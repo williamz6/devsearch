@@ -4,16 +4,18 @@ from django.http import HttpResponse
 from django.template import context
 from django.contrib import messages
 from .models import Project, Tag
+from .utils import searchProject
 from .forms import ProjectForm
 
+
 # Create your views here.
-
+# projects view
 def index(request):
-
-    projects = Project.objects.all()
+    projects, search_query = searchProject(request)
 
     context= {
         'projects': projects,
+        'search_query': search_query
     }
     
     return render(request, 'projects/projects.html', context)

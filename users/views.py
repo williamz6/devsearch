@@ -74,7 +74,7 @@ def registerUser(request):
 
     return render(request, 'users/login_register.html', context)
 
-@login_required(login_url='login')
+
 def profiles(request):
     
     profiles, search_query = searchProfiles(request)
