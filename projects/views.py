@@ -3,19 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import context
 from django.contrib import messages
+from django.core import paginator
 from .models import Project, Tag
-from .utils import searchProject
-from .forms import ProjectForm
+from .utils import searchProject, paginateProject
+from .forms import ProjectForm, ReviewForm
 
 
 # Create your views here.
 # projects view
 def index(request):
     projects, search_query = searchProject(request)
+    
+    custom_range, projects = paginateProject(request, projects)
+   
 
     context= {
         'projects': projects,
-        'search_query': search_query
+        'search_query': search_query,
+        'custom_range':custom_range,
     }
     
     return render(request, 'projects/projects.html', context)
@@ -23,8 +28,19 @@ def index(request):
 def project(request, pk):
     
     project = get_object_or_404(Project, id= pk)
+    form = ReviewForm()
+    
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = project
+        review.owner = request.user.profile
+        review.save()
+        messages.success(request, 'Review added')
+        return redirect('project')
     context= {
         'project': project,
+        'form': form
     }
     return render(request, 'projects/project.html', context)
 
@@ -84,3 +100,4 @@ def deleteProject(request, pk):
         'object': project
     }
     return render(request, 'delete_template.html', context)
+

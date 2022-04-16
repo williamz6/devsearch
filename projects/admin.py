@@ -3,5 +3,8 @@ from .models import Project, Review, Tag
 # Register your models here
 
 admin.site.register(Project)
-admin.site.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display= ("project", "owner",  "value" )
+    pass
+admin.site.register(Review, ReviewAdmin)
 admin.site.register(Tag)
