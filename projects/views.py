@@ -36,8 +36,11 @@ def project(request, pk):
         review.project = project
         review.owner = request.user.profile
         review.save()
+
+        project.getVoteCount
+
         messages.success(request, 'Review added')
-        return redirect('project')
+        return redirect('project', pk=project.id)
     context= {
         'project': project,
         'form': form
