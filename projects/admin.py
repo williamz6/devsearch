@@ -5,6 +5,6 @@ from .models import Project, Review, Tag
 admin.site.register(Project)
 class ReviewAdmin(admin.ModelAdmin):
     list_display= ("project", "owner",  "value" )
-    pass
+
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Tag)

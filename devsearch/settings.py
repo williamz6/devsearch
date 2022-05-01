@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
+    'rest_framework',
     'django.contrib.humanize'
 ]
 
