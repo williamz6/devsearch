@@ -32,7 +32,7 @@ class Project(models.Model):
     @property
     def getVoteCount(self):
         reviews = self.review_set.all()
-        upVotes = reviews.filter(value = "up").count()
+        upVotes = reviews.filter(value = 'up').count()
         totalVotes = reviews.count()
 
         ratio = (upVotes / totalVotes) * 100
@@ -48,7 +48,7 @@ class Review(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)
-    value = models.CharField(max_length=100, choices=VOTE_TYPE)
+    value = models.CharField(max_length=200, choices=VOTE_TYPE)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
