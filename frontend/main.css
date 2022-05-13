@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    background-color: #f8fafb;
+}
+
+img{
+    width: 100%;
+}
+
+#projects--wrapper{
+    margin: 0 auto;
+    max-width: 600px;
+    margin-top: 2em;
+    border: 1px solid #eaeaeb;
+    background-color: #fff;
+    
+}
+.project--card{
+    display: grid;
+    grid-template-columns: 1fr 3fr ;
+    gap: 2em;
+    margin-top: 2em;
+    padding: 1em;
+    align-items: center;
+
+}
+.project--card p{
+    color: #737373;
+
+}
+.card--header{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+.vote--option{
+    font-size: 24px;
+    color: #737373;
+    cursor: pointer;
+}
+.vote--option:hover{
+    color: #000;
+}
+#form-wrapper{
+    margin: 0 auto;
+    max-width: 600px;
+    margin-top: 2em;
+    border: 1px solid #eaeaeb;
+    background-color: #fff;
+    padding: 2em;
+}
